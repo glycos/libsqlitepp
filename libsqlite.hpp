@@ -108,6 +108,21 @@ namespace sqlite
             this->step();
         }
 
+        double get_double(int fieldnumber)
+        {
+            return sqlite3_column_double(this->_s, fieldnumber);
+        }
+
+        int get_int(int fieldnumber)
+        {
+            return sqlite3_column_int(this->_s, fieldnumber);
+        }
+
+        std::string get_text(int fieldnumber)
+        {
+            return std::string((const char*)sqlite3_column_text(this->_s, fieldnumber));
+        }
+
         virtual ~statement()
         {
             sqlite3_finalize(this->_s);

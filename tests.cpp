@@ -28,9 +28,10 @@ int main()
     // SELECT example.
     s->set_sql("SELECT id, text FROM test");
     s->prepare();
+    std::cout << "Retrieve values:" << std::endl;
     while(s->step())
     {
-        std::cout << "Row: " << std::endl;
+        std::cout << s->get_int(0) << " " << s->get_text(1) << std::endl;
     }
 
     return 0;
