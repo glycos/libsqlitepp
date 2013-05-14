@@ -213,6 +213,10 @@ namespace sqlite
             statement_ptr st(new statement(this->_db, sql));
             return st;
         }
+        int64_t last_insert_id()
+        {
+            return sqlite3_last_insert_rowid(this->_db);
+        }
         virtual ~sqlite()
         {
             sqlite3_close(this->_db);
