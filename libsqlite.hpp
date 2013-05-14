@@ -11,6 +11,8 @@ namespace sqlite
 {
     class sqlite;
     class statement;
+    typedef std::shared_ptr<statement> statement_ptr;
+    typedef std::shared_ptr<sqlite> sqlite_ptr;
     
     class exception : public std::exception
     {
@@ -203,12 +205,12 @@ namespace sqlite
         }
         std::shared_ptr<statement> get_statement()
         {
-            std::shared_ptr<statement> st(new statement(this->_db));
+            statement_ptr st(new statement(this->_db));
             return st;
         }
-        std::shared_ptr<statement> get_statement(std::string sql)
+        statement_ptr get_statement(std::string sql)
         {
-            std::shared_ptr<statement> st(new statement(this->_db, sql));
+            statement_ptr st(new statement(this->_db, sql));
             return st;
         }
         virtual ~sqlite()

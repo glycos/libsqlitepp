@@ -8,13 +8,13 @@ int main()
     {
         sqlite::sqlite db(":memory:");  // Open an in-memory database
                                         // Will auto close on destruction
-        std::shared_ptr<sqlite::statement> s = db.get_statement();
+        sqlite::statement_ptr s = db.get_statement();
         s->set_sql("CREATE TABLE test(id INTEGER PRIMARY KEY, text TEXT)");
         s->exec(); //exec calls prepare and step at once.
 
-        // When shared_ptr is assigned another value, it deletes its contents.
-        // So s = db.get_statement(); Would do almost the same, except it would
-        // clear its bindings, which are NOT done now! As we don't have bindings,
+        // When a shared_ptr like statement_pt is assigned another value, it deletes 
+        // its contents. So s = db.get_statement(); Would do almost the same, except
+        // it would clear its bindings, which are NOT done now! As we don't have bindings,
         // we don't care right now.
         s->reset();
 
