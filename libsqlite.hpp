@@ -123,6 +123,43 @@ namespace sqlite
             return std::string((const char*)sqlite3_column_text(this->_s, fieldnumber));
         }
 
+        void bind(int where, std::string text)
+        {
+            int rc = sqlite3_bind_text(this->_s, where, text.c_str(), text.length(), SQLITE_STATIC);
+            if(rc != SQLITE_OK)
+            {
+                exception e("Could not bind text.");
+                throw e;
+            }
+        }
+        void bind(int where, double d)
+        {
+            int rc = sqlite3_bind_double(this->_s, where, d);
+            if(rc != SQLITE_OK)
+            {
+                exception e("Could not bind double.");
+                throw e;
+            }
+        }
+        void bind(int where, int i)
+        {
+            int rc = sqlite3_bind_int(this->_s, where, i);
+            if(rc != SQLITE_OK)
+            {
+                exception e("Could not bind int.");
+                throw e;
+            }
+        }
+        void bind_null(int where)
+        {
+            int rc = sqlite3_bind_null(this->_s, where);
+            if(rc != SQLITE_OK)
+            {
+                exception e("Could not bind to NULL.");
+                throw e;
+            }
+        }
+
         virtual ~statement()
         {
             sqlite3_finalize(this->_s);
