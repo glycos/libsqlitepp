@@ -1,7 +1,7 @@
 libsqlitepp
 =========
 
-libsqlitepp is a C++11 wrapper around the sqlite library. It aims to be thread safe, simple to use and to have no dependencies (except for libsqlite3, ofcourse).
+libsqlitepp is a C++11 GPL-licensed wrapper around the sqlite library. It aims to be thread safe, simple to use and to have no dependencies (except for libsqlite3, ofcourse).
 
 usage
 =====
