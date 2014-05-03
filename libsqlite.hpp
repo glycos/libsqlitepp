@@ -133,6 +133,11 @@ namespace sqlite
         {
             return std::string((const char*)sqlite3_column_text(this->_s, fieldnumber));
         }
+        std::string get_blob(int fieldnumber)
+        {
+            return std::string((const char*)sqlite3_column_blob(this->_s, fieldnumber), 
+                    sqlite3_column_bytes(this->_s, fieldnumber));
+        }
 
         void bind(int where, std::string text)
         {
