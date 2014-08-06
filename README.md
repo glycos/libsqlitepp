@@ -26,3 +26,7 @@ make
 ```
 
 a resulting libsqlite executable will be in the build directory.
+
+License
+=======
+The library is licensed under GPLv3. If you want to use the library under different conditions, please do not hesitate to contact me. See the AUTHORS file.
