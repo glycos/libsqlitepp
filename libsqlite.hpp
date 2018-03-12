@@ -141,7 +141,7 @@ namespace sqlite
 
         void bind(int where, std::string text)
         {
-            int rc = sqlite3_bind_text(this->_s, where, text.c_str(), text.length(), SQLITE_STATIC);
+            int rc = sqlite3_bind_text(this->_s, where, text.c_str(), text.length(), SQLITE_TRANSIENT);
             if(rc != SQLITE_OK)
             {
                 exception e("Could not bind text.");
