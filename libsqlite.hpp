@@ -139,7 +139,7 @@ namespace sqlite
                     sqlite3_column_bytes(this->_s, fieldnumber));
         }
 
-        void bind(int where, std::string text)
+        void bind(int where, const std::string& text)
         {
             int rc = sqlite3_bind_text(this->_s, where, text.c_str(), text.length(), SQLITE_STATIC);
             if(rc != SQLITE_OK)
@@ -148,6 +148,17 @@ namespace sqlite
                 throw e;
             }
         }
+
+        void bind(int where, const std::string&& text)
+        {
+            int rc = sqlite3_bind_text(this->_s, where, text.c_str(), text.length(), SQLITE_TRANSIENT);
+            if(rc != SQLITE_OK)
+            {
+                exception e("Could not bind text.");
+                throw e;
+            }
+        }
+
         void bind(int where, double d)
         {
             int rc = sqlite3_bind_double(this->_s, where, d);
